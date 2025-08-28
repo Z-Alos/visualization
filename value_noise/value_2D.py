@@ -3,8 +3,9 @@ import numpy as np
 
 SCRN_WIDTH = 1024
 SCRN_HEIGHT = 1024
-# GRID_SIZE = 256
-GRID_SIZE = 128 
+GRID_SIZE = 512 
+GRID_SIZE = 256
+# GRID_SIZE = 128 
 pygame.init()
 SCREEN = pygame.display.set_mode((SCRN_WIDTH, SCRN_HEIGHT))
 clock = pygame.time.Clock()
@@ -20,7 +21,7 @@ def eval(x, y, c00, c10, c01, c11):
     tx = smoothstep(x)
     ty = smoothstep(y)
     nx0 = lerp(c00, c10, tx)
-    nx1 = lerp(c01, c11, tx) 
+    nx1 = lerp (c01, c11, tx) 
 
     return lerp(nx0, nx1, ty)
 
@@ -60,8 +61,8 @@ if __name__ == "__main__":
             c11 = grid[gy+1, gx+1]
 
             val = eval(tx, ty, c00, c10, c01, c11)
-            pixels[y, x] = [val, val, val]
-            # pixels[y, x] = [(val*23)%256, val, val]
+            # pixels[y, x] = [val, val, val]
+            pixels[y, x] = [(val*23)%256, val, val]
 
     while running:
         process_control()
